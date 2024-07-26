@@ -4,3 +4,13 @@ version: 1
 # Modify jump velocity
 velocity: 1
 velocityY: 1
+
+# Cooldown in seconds - set to 0 to disable
+cooldown: 3
+
+# Sound on jump. See https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+sound:
+  enabled: true
+  sound: ENTITY_BAT_TAKEOFF
+  volume: 1
+  pitch: 1
