@@ -19,6 +19,7 @@ public class JumpManager {
 
     public void enableJump(Player player) {
         player.setAllowFlight(true);
+        player.setFlying(false);
         enabledList.put(player.getUniqueId(), getMaxJumps(player));
     }
 
