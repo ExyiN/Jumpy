@@ -1,0 +1,4 @@
+name: Jumpy
+version: '1.0-SNAPSHOT'
+main: me.exyin.jumpy.Jumpy
+api-version: '1.21'
