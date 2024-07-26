@@ -2,3 +2,7 @@ name: Jumpy
 version: '1.0-SNAPSHOT'
 main: me.exyin.jumpy.Jumpy
 api-version: '1.21'
+commands:
+  jumpy:
+    description: Toggle jumpy or reload the config file
+    usage: /<command> [on | off | reload]
