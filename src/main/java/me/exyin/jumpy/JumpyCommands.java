@@ -48,10 +48,8 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
                     player.sendMessage("Jump already on.");
                     break;
                 }
-                if (jumpy.getJumpManager().canEnableJump(player)) {
-                    player.sendMessage(ChatColor.GREEN + "Jump activated.");
-                    jumpy.getJumpManager().enableJump(player);
-                }
+                player.sendMessage(ChatColor.GREEN + "Jump activated.");
+                jumpy.getJumpManager().enableJump(player);
                 break;
             case "off":
                 if (!(commandSender instanceof Player player)) {
@@ -66,10 +64,8 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
                     player.sendMessage("Jump already off.");
                     break;
                 }
-                if (jumpy.getJumpManager().canEnableJump(player)) {
-                    player.sendMessage(ChatColor.RED + "Jump deactivated.");
-                    jumpy.getJumpManager().disableJump(player);
-                }
+                player.sendMessage(ChatColor.RED + "Jump deactivated.");
+                jumpy.getJumpManager().disableJump(player);
                 break;
             default:
                 return false;

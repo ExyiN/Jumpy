@@ -19,18 +19,22 @@ public class JumpListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        if (jumpy.getJumpManager().canEnableJump(player)) {
-            jumpy.getJumpManager().enableJump(player);
-        }
+        Bukkit.getScheduler().runTask(jumpy, () -> jumpy.getJumpManager().reloadPlayer(event.getPlayer()));
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        jumpy.getJumpManager().disableJump(event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerGameModeChange(PlayerGameModeChangeEvent event) {
-        Player player = event.getPlayer();
-        if (jumpy.getJumpManager().isValidGameMode(event.getNewGameMode()) && jumpy.getJumpManager().canEnableJump(player)) {
-            Bukkit.getScheduler().runTask(jumpy, () -> jumpy.getJumpManager().enableJump(player));
-        }
+        Bukkit.getScheduler().runTask(jumpy, () -> jumpy.getJumpManager().reloadPlayer(event.getPlayer()));
+    }
+
+    @EventHandler
+    public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
+        Bukkit.getScheduler().runTask(jumpy, () -> jumpy.getJumpManager().reloadPlayer(event.getPlayer()));
     }
 
     @EventHandler

@@ -18,13 +18,18 @@ public class JumpManager {
     }
 
     public void enableJump(Player player) {
+        if(isOnCooldown(player)) {
+            return;
+        }
         player.setAllowFlight(true);
         player.setFlying(false);
         enabledList.put(player.getUniqueId(), getMaxJumps(player));
     }
 
     public void disableJump(Player player) {
-        player.setAllowFlight(false);
+        if(isValidGameMode(player.getGameMode())) {
+            player.setAllowFlight(false);
+        }
         enabledList.remove(player.getUniqueId());
     }
 
@@ -72,5 +77,13 @@ public class JumpManager {
 
     public boolean isJumpsLeftAtMax(Player player) {
         return enabledList.getOrDefault(player.getUniqueId(), getMaxJumps(player)) == getMaxJumps(player);
+    }
+
+    public void reloadPlayer(Player player) {
+        if (canEnableJump(player) && isValidGameMode(player.getGameMode())) {
+            enableJump(player);
+        } else {
+            disableJump(player);
+        }
     }
 }
