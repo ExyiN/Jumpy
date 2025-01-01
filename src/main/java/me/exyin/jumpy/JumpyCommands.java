@@ -21,7 +21,8 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (args.length != 1) {
-            return false;
+            sendHelpMessage(commandSender);
+            return true;
         }
 
         switch (args[0]) {
@@ -69,7 +70,7 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
 
                 break;
             default:
-                return false;
+                sendHelpMessage(commandSender);
         }
         return true;
     }
@@ -86,5 +87,9 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
             tabCompleteList.add("reload");
         }
         return tabCompleteList;
+    }
+
+    private void sendHelpMessage(CommandSender commandSender) {
+        commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageHelp()));
     }
 }

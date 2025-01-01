@@ -12,6 +12,7 @@ public class ConfigManager {
     private float soundPitch;
     private String messagePrefix;
     private String messageNoPerm;
+    private String messageHelp;
     private String messageMustBePlayer;
     private String messageJumpAlreadyOn;
     private String messageJumpAlreadyOff;
@@ -33,6 +34,7 @@ public class ConfigManager {
         soundPitch = (float) jumpy.getConfig().getDouble("sound.pitch");
         messagePrefix = jumpy.getConfig().getString("message.prefix");
         messageNoPerm = jumpy.getConfig().getString("message.noperm");
+        messageHelp = jumpy.getConfig().getString("message.help");
         messageMustBePlayer = jumpy.getConfig().getString("message.mustbeplayer");
         messageJumpAlreadyOn = jumpy.getConfig().getString("message.jumpalreadyon");
         messageJumpAlreadyOff = jumpy.getConfig().getString("message.jumpalreadyoff");
@@ -77,6 +79,10 @@ public class ConfigManager {
         return messageNoPerm;
     }
 
+    public String getMessageHelp() {
+        return messageHelp;
+    }
+
     public String getMessageMustBePlayer() {
         return messageMustBePlayer;
     }
@@ -100,4 +106,5 @@ public class ConfigManager {
     public String getMessageReload() {
         return messageReload;
     }
+
 }

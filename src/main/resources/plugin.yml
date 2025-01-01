@@ -1,6 +1,7 @@
 name: Jumpy
 version: '1.0-SNAPSHOT'
 main: me.exyin.jumpy.Jumpy
+author: ExyiN
 api-version: '1.21'
 depend:
   - LuckPerms
@@ -16,9 +17,6 @@ permissions:
   jumpy.reload:
     default: op
     description: Grant access to the reload command
-  jumpy.max_jumps.*:
-    default: false
-    description: Max number of jumps
   jumpy.infinite:
     default: false
     description: Grant unlimited jumps

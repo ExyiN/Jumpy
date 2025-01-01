@@ -20,6 +20,7 @@ message:
   prefix: "<gradient:#FCC45F:#FFF3B1>Jumpy</gradient> <dark_gray>»</dark_gray> "
   noperm: "<red>You don't have permission to use this command.</red>"
   mustbeplayer: "<red>You must be a player to run this command.</red>"
+  help: "<gray>Help :<newline>• <gold>/jumpy on</gold> : Enable multiple jumps.<newline>• <gold>/jumpy off</gold> : Disable multiple jumps.</gray>"
   jumpalreadyon: "<gray>Jump already on.</gray>"
   jumpalreadyoff: "<gray>Jump already off.</gray>"
   jumpon: "<green>Jump enabled.</green>"
