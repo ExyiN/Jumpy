@@ -1,11 +1,12 @@
 # Do not touch this value
 version: 1
 
-# Modify jump velocity
+# Jump velocity
 velocity: 1
 velocityY: 1
 
 # Cooldown in seconds - set to 0 to disable
+# Triggered after the last jump is used
 cooldown: 3
 
 # Sound on jump. See https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html

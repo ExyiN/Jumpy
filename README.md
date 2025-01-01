@@ -1,5 +1,5 @@
 # Jumpy
-Jumpy is a Minecraft plugin that allows you to do double jumps, triple jumps, and more!
+Jumpy is a Minecraft [Paper](https://papermc.io/) plugin that allows you to do multiple jumps!
 ## Dependency
 This plugin depends on [LuckPerms](https://luckperms.net/).
 ## Permissions
