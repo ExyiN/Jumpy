@@ -22,56 +22,56 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (args.length != 1) {
-            sendHelpMessage(commandSender);
+            jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageHelp());
             return true;
         }
 
         switch (args[0]) {
             case "reload":
                 if (!commandSender.hasPermission("jumpy.reload")) {
-                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
+                    jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageNoPerm());
                     break;
                 }
                 jumpy.reloadConfig();
                 jumpy.getConfigManager().setupValues();
-                commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageReload()));
+                jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageReload());
                 break;
             case "on":
                 if (!(commandSender instanceof Player player)) {
-                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageMustBePlayer()));
+                    jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageMustBePlayer());
                     break;
                 }
                 if (!player.hasPermission("jumpy.use")) {
-                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
+                    jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageNoPerm());
                     break;
                 }
                 if (!jumpy.getJumpManager().isJumpDisabled(player)) {
-                    player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpAlreadyOn()));
+                    jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageJumpAlreadyOn());
                     break;
                 }
-                player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpOn()));
+                jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageJumpOn());
                 jumpy.getJumpManager().enableJump(player);
 
                 break;
             case "off":
                 if (!(commandSender instanceof Player player)) {
-                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageMustBePlayer()));
+                    jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageMustBePlayer());
                     break;
                 }
                 if (!player.hasPermission("jumpy.use")) {
-                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
+                    jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageNoPerm());
                     break;
                 }
                 if (jumpy.getJumpManager().isJumpDisabled(player)) {
-                    player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpAlreadyOff()));
+                    jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageJumpAlreadyOff());
                     break;
                 }
-                player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpOff()));
+                jumpy.getMessageManager().sendMessage(player, jumpy.getConfigManager().getMessageJumpOff());
                 jumpy.getJumpManager().disableJump(player);
 
                 break;
             default:
-                sendHelpMessage(commandSender);
+                jumpy.getMessageManager().sendMessage(commandSender, jumpy.getConfigManager().getMessageHelp());
         }
         return true;
     }
@@ -88,9 +88,5 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
             tabCompleteList.add("reload");
         }
         return tabCompleteList;
-    }
-
-    private void sendHelpMessage(CommandSender commandSender) {
-        commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageHelp()));
     }
 }

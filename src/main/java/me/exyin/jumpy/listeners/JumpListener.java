@@ -66,7 +66,6 @@ public class JumpListener implements Listener {
             return;
         }
 
-        // Make the player jump
         event.setCancelled(true);
         player.setVelocity(player.getLocation().getDirection().multiply(jumpy.getConfigManager().getVelocity()).setY(jumpy.getConfigManager().getVelocityY()));
 
