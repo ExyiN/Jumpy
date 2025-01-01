@@ -1,4 +1,6 @@
-package me.exyin.jumpy;
+package me.exyin.jumpy.utils;
+
+import me.exyin.jumpy.Jumpy;
 
 public class ConfigManager {
     private final Jumpy jumpy;

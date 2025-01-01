@@ -1,5 +1,6 @@
-package me.exyin.jumpy;
+package me.exyin.jumpy.commands;
 
+import me.exyin.jumpy.Jumpy;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

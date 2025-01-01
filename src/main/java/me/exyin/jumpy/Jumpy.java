@@ -1,5 +1,9 @@
 package me.exyin.jumpy;
 
+import me.exyin.jumpy.commands.JumpyCommands;
+import me.exyin.jumpy.listeners.JumpListener;
+import me.exyin.jumpy.utils.ConfigManager;
+import me.exyin.jumpy.utils.JumpManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;

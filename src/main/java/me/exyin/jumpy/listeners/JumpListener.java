@@ -1,5 +1,6 @@
-package me.exyin.jumpy;
+package me.exyin.jumpy.listeners;
 
+import me.exyin.jumpy.Jumpy;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

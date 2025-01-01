@@ -1,5 +1,6 @@
-package me.exyin.jumpy;
+package me.exyin.jumpy.utils;
 
+import me.exyin.jumpy.Jumpy;
 import net.luckperms.api.node.Node;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
