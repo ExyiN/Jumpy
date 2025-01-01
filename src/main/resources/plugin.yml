@@ -2,7 +2,26 @@ name: Jumpy
 version: '1.0-SNAPSHOT'
 main: me.exyin.jumpy.Jumpy
 api-version: '1.21'
+depend:
+  - LuckPerms
 commands:
   jumpy:
     description: Toggle jumpy or reload the config file
+    permission: jumpy.use
     usage: /<command> [on | off | reload]
+permissions:
+  jumpy.use:
+    default: op
+    description: Grant access to the use of multiple jumps
+  jumpy.reload:
+    default: op
+    description: Grant access to the reload command
+  jumpy.max_jumps.*:
+    default: false
+    description: Max number of jumps
+  jumpy.infinite:
+    default: false
+    description: Grant unlimited jumps
+  jumpy.disabled:
+    default: false
+    description: Disable multiple jumps

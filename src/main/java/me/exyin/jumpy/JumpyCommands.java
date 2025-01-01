@@ -1,6 +1,5 @@
 package me.exyin.jumpy;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,45 +26,47 @@ public class JumpyCommands implements CommandExecutor, TabCompleter {
 
         switch (args[0]) {
             case "reload":
-                if (!commandSender.hasPermission("jump.reload")) {
-                    commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                if (!commandSender.hasPermission("jumpy.reload")) {
+                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
                     break;
                 }
                 jumpy.reloadConfig();
                 jumpy.getConfigManager().setupValues();
-                commandSender.sendMessage(ChatColor.DARK_GREEN + "Config file reloaded.");
+                commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageReload()));
                 break;
             case "on":
                 if (!(commandSender instanceof Player player)) {
-                    commandSender.sendMessage(ChatColor.RED + "You must be a player to execute this command.");
+                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageMustBePlayer()));
                     break;
                 }
                 if (!player.hasPermission("jumpy.use")) {
-                    commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
                     break;
                 }
-                if (jumpy.getJumpManager().isJumpEnabled(player)) {
-                    player.sendMessage("Jump already on.");
+                if (!jumpy.getJumpManager().isJumpDisabled(player)) {
+                    player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpAlreadyOn()));
                     break;
                 }
-                player.sendMessage(ChatColor.GREEN + "Jump activated.");
+                player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpOn()));
                 jumpy.getJumpManager().enableJump(player);
+
                 break;
             case "off":
                 if (!(commandSender instanceof Player player)) {
-                    commandSender.sendMessage(ChatColor.RED + "You must be a player to execute this command.");
+                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageMustBePlayer()));
                     break;
                 }
                 if (!player.hasPermission("jumpy.use")) {
-                    commandSender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                    commandSender.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageNoPerm()));
                     break;
                 }
-                if (!jumpy.getJumpManager().isJumpEnabled(player)) {
-                    player.sendMessage("Jump already off.");
+                if (jumpy.getJumpManager().isJumpDisabled(player)) {
+                    player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpAlreadyOff()));
                     break;
                 }
-                player.sendMessage(ChatColor.RED + "Jump deactivated.");
+                player.sendMessage(jumpy.getMinimessage().deserialize(jumpy.getConfigManager().getMessagePrefix() + jumpy.getConfigManager().getMessageJumpOff()));
                 jumpy.getJumpManager().disableJump(player);
+
                 break;
             default:
                 return false;

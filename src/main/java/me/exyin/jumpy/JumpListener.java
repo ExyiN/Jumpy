@@ -21,7 +21,7 @@ public class JumpListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        jumpy.getJumpManager().disableJump(event.getPlayer());
+        jumpy.getJumpManager().deactivateJump(event.getPlayer());
     }
 
     @EventHandler
@@ -37,15 +37,16 @@ public class JumpListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (!jumpy.getJumpManager().isValidGameMode(player.getGameMode())
-                || !jumpy.getJumpManager().isJumpEnabled(player)
+        if (!player.hasPermission("jumpy.use")
+                || jumpy.getJumpManager().isJumpDisabled(player)
+                || !jumpy.getJumpManager().isValidGameMode(player.getGameMode())
                 || jumpy.getJumpManager().isOnCooldown(player)
                 || jumpy.getJumpManager().isJumpsLeftAtMax(player)) {
             return;
         }
 
-        if (player.isOnGround() && jumpy.getJumpManager().canEnableJump(player)) {
-            jumpy.getJumpManager().enableJump(player);
+        if (player.isOnGround()) {
+            jumpy.getJumpManager().reloadPlayer(player);
         }
     }
 
@@ -53,8 +54,12 @@ public class JumpListener implements Listener {
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
         Player player = event.getPlayer();
 
-        if (!jumpy.getJumpManager().isValidGameMode(player.getGameMode())
-                || !jumpy.getJumpManager().isJumpEnabled(player)
+        if (!player.hasPermission("jumpy.use") && jumpy.getJumpManager().isInJumpsLeftList(player)) {
+            jumpy.getJumpManager().deactivateJump(player);
+            return;
+        }
+        if (!player.hasPermission("jumpy.use") || jumpy.getJumpManager().isJumpDisabled(player)
+                || !jumpy.getJumpManager().isValidGameMode(player.getGameMode())
                 || !jumpy.getJumpManager().hasJumpsLeft(player)
                 || jumpy.getJumpManager().isOnCooldown(player)) {
             return;
@@ -70,11 +75,12 @@ public class JumpListener implements Listener {
 
         jumpy.getJumpManager().removeOneJumpLeft(player);
 
-        // Cooldown
-        if (jumpy.getConfigManager().getCooldown() > 0 && !jumpy.getJumpManager().hasJumpsLeft(player)) {
-            jumpy.getJumpManager().setOnCooldown(player);
+        if (!jumpy.getJumpManager().hasJumpsLeft(player)) {
             player.setAllowFlight(false);
-            Bukkit.getScheduler().runTaskLater(jumpy, () -> jumpy.getJumpManager().removeOnCooldown(player), jumpy.getConfigManager().getCooldown());
+            if (jumpy.getConfigManager().getCooldown() > 0) {
+                jumpy.getJumpManager().setOnCooldown(player);
+                Bukkit.getScheduler().runTaskLater(jumpy, () -> jumpy.getJumpManager().removeOnCooldown(player), jumpy.getConfigManager().getCooldown());
+            }
         }
     }
 }

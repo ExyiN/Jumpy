@@ -14,3 +14,14 @@ sound:
   sound: ENTITY_BAT_TAKEOFF
   volume: 1
   pitch: 1
+
+# Messages
+message:
+  prefix: "<gradient:#FCC45F:#FFF3B1>Jumpy</gradient> <dark_gray>»</dark_gray> "
+  noperm: "<red>You don't have permission to use this command.</red>"
+  mustbeplayer: "<red>You must be a player to run this command.</red>"
+  jumpalreadyon: "<gray>Jump already on.</gray>"
+  jumpalreadyoff: "<gray>Jump already off.</gray>"
+  jumpon: "<green>Jump enabled.</green>"
+  jumpoff: "<red>Jump disabled.</red>"
+  reload: "<green>Config file reloaded.</green>"

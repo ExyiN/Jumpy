@@ -10,6 +10,14 @@ public class ConfigManager {
     private String sound;
     private float soundVolume;
     private float soundPitch;
+    private String messagePrefix;
+    private String messageNoPerm;
+    private String messageMustBePlayer;
+    private String messageJumpAlreadyOn;
+    private String messageJumpAlreadyOff;
+    private String messageJumpOn;
+    private String messageJumpOff;
+    private String messageReload;
 
     public ConfigManager(Jumpy jumpy) {
         this.jumpy = jumpy;
@@ -23,6 +31,14 @@ public class ConfigManager {
         sound = jumpy.getConfig().getString("sound.sound");
         soundVolume = (float) jumpy.getConfig().getDouble("sound.volume");
         soundPitch = (float) jumpy.getConfig().getDouble("sound.pitch");
+        messagePrefix = jumpy.getConfig().getString("message.prefix");
+        messageNoPerm = jumpy.getConfig().getString("message.noperm");
+        messageMustBePlayer = jumpy.getConfig().getString("message.mustbeplayer");
+        messageJumpAlreadyOn = jumpy.getConfig().getString("message.jumpalreadyon");
+        messageJumpAlreadyOff = jumpy.getConfig().getString("message.jumpalreadyoff");
+        messageJumpOn = jumpy.getConfig().getString("message.jumpon");
+        messageJumpOff = jumpy.getConfig().getString("message.jumpoff");
+        messageReload = jumpy.getConfig().getString("message.reload");
     }
 
     public double getVelocity() {
@@ -51,5 +67,37 @@ public class ConfigManager {
 
     public float getSoundPitch() {
         return soundPitch;
+    }
+
+    public String getMessagePrefix() {
+        return messagePrefix;
+    }
+
+    public String getMessageNoPerm() {
+        return messageNoPerm;
+    }
+
+    public String getMessageMustBePlayer() {
+        return messageMustBePlayer;
+    }
+
+    public String getMessageJumpAlreadyOn() {
+        return messageJumpAlreadyOn;
+    }
+
+    public String getMessageJumpAlreadyOff() {
+        return messageJumpAlreadyOff;
+    }
+
+    public String getMessageJumpOn() {
+        return messageJumpOn;
+    }
+
+    public String getMessageJumpOff() {
+        return messageJumpOff;
+    }
+
+    public String getMessageReload() {
+        return messageReload;
     }
 }
