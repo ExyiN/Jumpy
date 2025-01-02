@@ -1,13 +1,17 @@
 package me.exyin.jumpy.utils;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import me.exyin.jumpy.Jumpy;
 
+@Getter
 public class ConfigManager {
+    @Getter(AccessLevel.NONE)
     private final Jumpy jumpy;
 
     private double velocity;
     private double velocityY;
-    private int cooldown;
+    private long cooldown;
     private boolean isSoundEnabled;
     private String sound;
     private float soundVolume;
@@ -44,69 +48,4 @@ public class ConfigManager {
         messageJumpOff = jumpy.getConfig().getString("message.jumpoff");
         messageReload = jumpy.getConfig().getString("message.reload");
     }
-
-    public double getVelocity() {
-        return velocity;
-    }
-
-    public double getVelocityY() {
-        return velocityY;
-    }
-
-    public int getCooldown() {
-        return cooldown * 20;
-    }
-
-    public boolean isSoundEnabled() {
-        return isSoundEnabled;
-    }
-
-    public String getSound() {
-        return sound;
-    }
-
-    public float getSoundVolume() {
-        return soundVolume;
-    }
-
-    public float getSoundPitch() {
-        return soundPitch;
-    }
-
-    public String getMessagePrefix() {
-        return messagePrefix;
-    }
-
-    public String getMessageNoPerm() {
-        return messageNoPerm;
-    }
-
-    public String getMessageHelp() {
-        return messageHelp;
-    }
-
-    public String getMessageMustBePlayer() {
-        return messageMustBePlayer;
-    }
-
-    public String getMessageJumpAlreadyOn() {
-        return messageJumpAlreadyOn;
-    }
-
-    public String getMessageJumpAlreadyOff() {
-        return messageJumpAlreadyOff;
-    }
-
-    public String getMessageJumpOn() {
-        return messageJumpOn;
-    }
-
-    public String getMessageJumpOff() {
-        return messageJumpOff;
-    }
-
-    public String getMessageReload() {
-        return messageReload;
-    }
-
 }

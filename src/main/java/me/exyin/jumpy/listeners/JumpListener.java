@@ -79,7 +79,7 @@ public class JumpListener implements Listener {
             player.setAllowFlight(false);
             if (jumpy.getConfigManager().getCooldown() > 0) {
                 jumpy.getJumpManager().setOnCooldown(player);
-                Bukkit.getScheduler().runTaskLater(jumpy, () -> jumpy.getJumpManager().removeOnCooldown(player), jumpy.getConfigManager().getCooldown());
+                Bukkit.getScheduler().runTaskLater(jumpy, () -> jumpy.getJumpManager().removeOnCooldown(player), jumpy.getConfigManager().getCooldown() * 20);
             }
         }
     }
