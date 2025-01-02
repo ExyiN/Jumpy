@@ -94,7 +94,7 @@ public class JumpManager {
     }
 
     public boolean isJumpsLeftAtMax(Player player) {
-        return jumpsLeftList.getOrDefault(player.getUniqueId(), getMaxJumps(player)) == getMaxJumps(player);
+        return jumpsLeftList.getOrDefault(player.getUniqueId(), -1) == getMaxJumps(player);
     }
 
     public void reloadPlayer(Player player) {
