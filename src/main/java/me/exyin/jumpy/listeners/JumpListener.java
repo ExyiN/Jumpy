@@ -36,6 +36,11 @@ public class JumpListener implements Listener {
     }
 
     @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        jumpy.getJumpManager().reloadPlayer(event.getPlayer());
+    }
+
+    @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         if (!player.hasPermission("jumpy.use")
