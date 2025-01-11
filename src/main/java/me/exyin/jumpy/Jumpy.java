@@ -1,7 +1,9 @@
 package me.exyin.jumpy;
 
+import lombok.Getter;
 import me.exyin.jumpy.commands.JumpyCommands;
 import me.exyin.jumpy.listeners.JumpListener;
+import me.exyin.jumpy.runnables.CheckReloadPlayerRunnable;
 import me.exyin.jumpy.utils.ConfigManager;
 import me.exyin.jumpy.utils.JumpManager;
 import me.exyin.jumpy.utils.MessageManager;
@@ -11,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
+@Getter
 public final class Jumpy extends JavaPlugin {
     private JumpManager jumpManager;
     private ConfigManager configManager;
@@ -28,21 +31,6 @@ public final class Jumpy extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new JumpListener(this), this);
         Objects.requireNonNull(getCommand("jumpy")).setExecutor(new JumpyCommands(this));
-    }
-
-    public JumpManager getJumpManager() {
-        return jumpManager;
-    }
-
-    public ConfigManager getConfigManager() {
-        return configManager;
-    }
-
-    public LuckPerms getLuckPerms() {
-        return luckPerms;
-    }
-
-    public MessageManager getMessageManager() {
-        return messageManager;
+        new CheckReloadPlayerRunnable(this).runTaskTimer(this, 0L, 5L);
     }
 }

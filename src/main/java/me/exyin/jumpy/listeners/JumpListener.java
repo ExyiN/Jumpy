@@ -41,22 +41,6 @@ public class JumpListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        if (!player.hasPermission("jumpy.use")
-                || jumpy.getJumpManager().isJumpDisabled(player)
-                || !jumpy.getJumpManager().isValidGameMode(player.getGameMode())
-                || jumpy.getJumpManager().isOnCooldown(player)
-                || jumpy.getJumpManager().isJumpsLeftAtMax(player)) {
-            return;
-        }
-
-        if (player.isOnGround()) {
-            jumpy.getJumpManager().reloadPlayer(player);
-        }
-    }
-
-    @EventHandler
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
         Player player = event.getPlayer();
 
